@@ -1,0 +1,61 @@
+@font-face {
+    font-family: "nx";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXONFootballGothicLA1.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    font-family: "nx", "monospace", "sans-serif" !important;
+}
+#intro {
+    background-image: url("./drogba.png");
+    height: 100vh !important;
+    z-index: 9999;
+}
+.mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* Height for devices larger than 576px */
+@media (min-width: 992px) {
+    #intro {
+        margin-top: -58.59px;
+    }
+}
+.navzero {
+    margin-top: -58.59px;
+}
+.nav-recovery {
+    margin-top: 0px;
+}
+.navbar .nav-link {
+    color: #fff !important;
+}
+.dropdown-item:focus,
+.dropdown-item:hover {
+    color: #333 !important;
+}
+.font9 {
+    font-size: 0.9rem;
+}
+.font8 {
+    font-size: 0.8rem;
+}
+.font10 {
+    font-size: 1rem;
+}
+.font11 {
+    font-size: 1.1rem;
+}
+.cardMinWidth {
+    min-width: 180px;
+}

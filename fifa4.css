@@ -8,12 +8,13 @@ body {
     font-family: "nx", "monospace", "sans-serif" !important;
 }
 #intro {
-    background-image: url("./drogba.png");
     height: 100vh !important;
     z-index: 9999;
 }
 .mask {
     position: absolute;
+    background-image: url("./drogba.png");
+
     top: 0;
     right: 0;
     bottom: 0;
@@ -26,14 +27,14 @@ body {
 }
 
 /* Height for devices larger than 576px */
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
     #intro {
         margin-top: -58.59px;
     }
 }
 .navzero {
     margin-top: -58.59px;
-}
+} */
 .nav-recovery {
     margin-top: 0px;
 }

@@ -71,3 +71,8 @@ header .masthead {
 .cardMinWidth {
     min-width: 180px;
 }
+table > tr,
+th,
+td {
+    font-size: 0.87rem !important;
+}

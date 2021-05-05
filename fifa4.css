@@ -25,7 +25,18 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
-
+header .masthead {
+    background-image: url("./drogba.png");
+    padding-top: 15rem;
+    padding-bottom: 61rem;
+    height: 100vh;
+    text-align: center;
+    color: #fff;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+}
 /* Height for devices larger than 576px */
 /* @media (min-width: 992px) {
     #intro {

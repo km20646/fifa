@@ -54,10 +54,56 @@ function playerInfo(spid) {
         dataType: "json",
         success: function (res) {
             player = res.find((element, index, arr) => element.id === spid);
-            console.log(player);
+            player = player.name;
         },
     });
     return player;
+}
+function renderTable(res) {
+    return new Promise(function (resolve, reject) {
+        $("#transferTable").DataTable({
+            responsive: true,
+            select: true, ///항목 선택기능 추가
+            scrollCollapse: true,
+            processing: true,
+            autoWidth: true,
+            // scrollX: true,
+            scrollY: "450px",
+            destroy: true,
+            order: [[0, "asc"]],
+            pagingType: "simple",
+            dom: 'rt<"float-left"p>',
+            data: res,
+
+            columns: [
+                {
+                    data: "tradeDate",
+                    render: function (data) {
+                        return data.substr(0, 10);
+                    },
+                },
+                {
+                    data: "spid",
+                    render: function (data, type, row, meta) {
+                        return playerInfo(data);
+                    },
+                },
+                {
+                    data: "grade",
+                    render: function (data) {
+                        return data + "카";
+                    },
+                },
+                {
+                    data: "value",
+                    render: function (data) {
+                        return data.toLocaleString("ko-KR");
+                    },
+                },
+            ],
+        });
+        resolve("Finish");
+    });
 }
 $("#testBtn").on("click", function () {
     startModal.hide();
@@ -68,6 +114,9 @@ $("#testBtn").on("click", function () {
             $("#myLevel").text(res.nickname);
             $("#getMyInfo").text(`LV : ${res.level}`);
             accessId = res.accessId;
+            $("#transferTable > tbody").append(
+                "<tr><td></td><td colspan='2'><i class='fa fa-spinner fa-spin fa-3x fa-fw'></i><span class='sr-only'>Loading...</span><td></tr>"
+            );
         })
         .done(() => {
             getDataAjax("https://api.nexon.co.kr/fifaonline4/v1.0/users/", `${accessId}/maxdivision`, "123").done((res) => {
@@ -78,37 +127,14 @@ $("#testBtn").on("click", function () {
             });
         })
         .done(() => {
-            getDataAjax(`https://api.nexon.co.kr/fifaonline4/v1.0/users/${accessId}/markets?tradetype=sell`, `&limit=100`, "123").done((res) => {
-                console.log(res);
-                console.log(playerInfo(101000805));
+            getDataAjax(`https://api.nexon.co.kr/fifaonline4/v1.0/users/${accessId}/markets?tradetype=sell`, `&limit=50`, "123").done((res) => {
+                renderTable(res).then((res) => {
+                    $("table>thead").addClass("bg-dark text-white");
+                    $("#transferTable_paginate").addClass("mt-3");
+                });
             });
         });
 });
 $(document).ready(function () {
     startModal.show();
-    // $("#transferTable").DataTable({
-    //     responsive: true,
-    //     select: true, ///항목 선택기능 추가
-    //     scrollCollapse: true,
-    //     autoWidth: false,
-    //     scrollX: false,
-    //     scrollY: "450px",
-    //     destroy: true,
-    //     order: [[0, "asc"]],
-    //     pagingType: "simple",
-    //     dom: 'rt<"float-left"p><"float-right"f>',
-    //     data: data,
-
-    //     columns: [
-    //         { data: "userId" },
-
-    //         { data: "cateName" },
-    //         {
-    //             data: "goodsPrice",
-    //             render: function (data, type, row, meta) {
-    //                 return numberWithCommas(data) + "원";
-    //             },
-    //         },
-    //     ],
-    // });
 });

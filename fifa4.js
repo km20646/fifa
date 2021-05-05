@@ -77,11 +77,7 @@ function renderTable(res) {
                     },
                 },
                 {
-                    data: "spid",
-                    render: function (data, type, row, meta) {
-                        var names = playerInfo(data);
-                        return names;
-                    },
+                    data: "spid"
                 },
                 {
                     data: "grade",

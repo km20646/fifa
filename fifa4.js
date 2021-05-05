@@ -43,15 +43,8 @@ function playerInfo(spid) {
     $.ajax({
         type: "GET",
         async: false,
-        url: `https://static.api.nexon.co.kr/fifaonline4/latest/spid.json`,
-        beforeSend: function (xhr) {
-            // xhr.setRequestHeader("Content-type", "String");
-            xhr.setRequestHeader(
-                "Authorization",
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiMTkxMzA4NTA3NyIsImF1dGhfaWQiOiIyIiwidG9rZW5fdHlwZSI6IkFjY2Vzc1Rva2VuIiwic2VydmljZV9pZCI6IjQzMDAxMTQ4MSIsIlgtQXBwLVJhdGUtTGltaXQiOiIyMDAwMDoxMCIsIm5iZiI6MTU4MTY2MDc2MiwiZXhwIjoxNjQ0NzMyNzYyLCJpYXQiOjE1ODE2NjA3NjJ9.IxFpLK1aw0axXRvAgzEPv8AbhGFdMtXzfGp9IqMkATs"
-            );
-        },
-        dataType: "json",
+        url: `./player.json`,
+
         success: function (res) {
             player = res.find((element, index, arr) => element.id === spid);
             player = player.name;
@@ -59,6 +52,7 @@ function playerInfo(spid) {
     });
     return player;
 }
+
 function renderTable(res) {
     return new Promise(function (resolve, reject) {
         $("#transferTable").DataTable({
@@ -85,7 +79,8 @@ function renderTable(res) {
                 {
                     data: "spid",
                     render: function (data, type, row, meta) {
-                        return playerInfo(data);
+                        var names = playerInfo(data);
+                        return names;
                     },
                 },
                 {

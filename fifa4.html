@@ -23,6 +23,18 @@
     <body>
         <!--Main Navigation-->
         <header>
+            <!--start_modal-->
+            <div class="modal fade" id="startModal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-body">
+                            <h5 class="modal-title mb-4" id="startModalLabel">당신의 닉네임을 입력해주세요</h5>
+                            <input type="text" class="form-control form-control-sm" id="testInput" />
+                            <button type="button" id="testBtn" class="btn mt-4 btn-block btn-outline-light">시작하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg bg-transparent navbar-dark text-white" style="z-index: 1">
                 <div class="container-fluid">
@@ -105,33 +117,33 @@
         </header>
         <div class="container mt-4">
             <a name="cards">
-                <div class="d-flex">
-                    <div class="card mb-3">
-                        <div class="d-flex">
-                            <div class="bg-warning d-flex" style="align-items: center; min-width: 85px">
-                                <i class="fas fa-address-card fa-3x text-white text-center" style="margin: 0 auto"> </i>
-                            </div>
-                            <div class="card-body cardMinWidth">
-                                <h5 class="card-title font10"><span id="myLevel"></span>님의 레벨</h5>
-                                <p class="card-text" id="getMyInfo">LV :</p>
-                                <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                            </div>
+                <!-- <div class="d-flex"> -->
+                <div class="card mb-3">
+                    <div class="d-flex">
+                        <div class="bg-warning d-flex" style="align-items: center; min-width: 85px">
+                            <i class="fas fa-address-card fa-3x text-white text-center" style="margin: 0 auto"> </i>
                         </div>
-                    </div>
-                    <div class="card mb-3 ms-4">
-                        <div class="d-flex">
-                            <div class="bg-primary d-flex" style="align-items: center; min-width: 85px">
-                                <i class="fas fa-grin-hearts fa-3x text-white text-center" style="margin: 0 auto"> </i>
-                            </div>
-                            <div class="card-body cardMinWidth">
-                                <h5 class="card-title font10">역대 최고 등급</h5>
-                                <p class="card-text" id="getMyteer">티어 :</p>
-                                <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                            </div>
+                        <div class="card-body cardMinWidth">
+                            <h5 class="card-title font10"><span id="myLevel"></span>님의 레벨</h5>
+                            <p class="card-text" id="getMyInfo">LV :</p>
+                            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                         </div>
                     </div>
                 </div>
-                <table id="transferTable" class="table">
+                <div class="card mb-3">
+                    <div class="d-flex">
+                        <div class="bg-primary d-flex" style="align-items: center; min-width: 85px">
+                            <i class="fas fa-grin-hearts fa-3x text-white text-center" style="margin: 0 auto"> </i>
+                        </div>
+                        <div class="card-body cardMinWidth">
+                            <h5 class="card-title font10">역대 최고 등급</h5>
+                            <p class="card-text" id="getMyteer">티어 :</p>
+                            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
+                <!-- <table id="transferTable" class="table">
                     <thead>
                         <tr>
                             <th>거래일자</th>
@@ -141,7 +153,7 @@
                         </tr>
                     </thead>
                     <tbody></tbody>
-                </table>
+                </table> -->
             </a>
         </div>
         <a name="car">
@@ -149,26 +161,7 @@
                 <div class="card-body" name="cards" style="height: 700px"></div>
             </div>
         </a>
-        <!--start_modal-->
-        <div
-            class="modal fade"
-            id="startModal"
-            tabindex="-1"
-            aria-labelledby="startModalLabel"
-            aria-hidden="true"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-        >
-            <div class="modal-dialog">
-                <div class="modal-content bg-dark text-white">
-                    <div class="modal-body">
-                        <h5 class="modal-title mb-4" id="startModalLabel">당신의 닉네임을 입력해주세요</h5>
-                        <input type="text" class="form-control form-control-sm" id="testInput" />
-                        <button type="button" id="testBtn" class="btn mt-4 btn-block btn-outline-light">시작하기</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- MDB -->
         <script
             src="https://code.jquery.com/jquery-3.6.0.js"

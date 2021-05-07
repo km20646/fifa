@@ -184,13 +184,11 @@ function renderTable(res) {
 $("#testBtn").on("click", function () {
     startModal.hide();
     let nick = $("#testInput").val();
-    console.log(nick);
     getDataAjax("https://api.nexon.co.kr/fifaonline4/v1.0/users?nickname=", nick, "123")
         .done((res) => {
             $("#myLevel").text(res.nickname);
             $("#getMyInfo").text(`LV : ${res.level}`);
             accessId = res.accessId;
-            console.log(accessId);
             $("#transferTable > tbody").append(
                 "<tr><td></td><td colspan='2'><i class='fa fa-spinner fa-spin fa-3x fa-fw'></i><span class='sr-only'>Loading...</span><td></tr>"
             );
@@ -200,7 +198,6 @@ $("#testBtn").on("click", function () {
                 let normalMatch = res[0];
                 let teer = ranker.find((element) => element.divisionId == normalMatch.division);
                 $("#getMyteer").text(`${teer.divisionName} /${normalMatch.achievementDate.substr(0, 10)}(달성일)`);
-                console.log(typeof normalMatch.achievementDate);
                 $("#getMyteerDate").text();
             });
         })

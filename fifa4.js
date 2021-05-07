@@ -147,7 +147,9 @@ function renderTable(res) {
             // pagingType: "simple",
             dom: 'rt<"float-left"p>',
             data: res,
-
+            drawCallback: function () {
+                $(".dataTables_paginate > .pagination").addClass("pagination-sm");
+            },
             columns: [
                 {
                     data: "tradeDate",
@@ -214,7 +216,6 @@ $("#testBtn").on("click", function () {
                     renderTable(tableData).then((res) => {
                         $("table>thead").addClass("bg-dark text-white");
                         $("#transferTable_paginate").addClass("mt-3");
-                        $(".pagination").addClass("pagination-sm");
                     });
                 });
             });

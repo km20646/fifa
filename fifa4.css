@@ -7,7 +7,7 @@
 body {
     font-family: "nx", "monospace", "sans-serif" !important;
 }
-#intro {
+/* #intro {
     height: 100vh !important;
     z-index: 9999;
 }
@@ -24,11 +24,11 @@ body {
     overflow: hidden;
     background-attachment: fixed;
     background-size: cover;
-}
+} */
 header .masthead {
     background-image: url("./drogba.png");
     padding-top: 15rem;
-    padding-bottom: 61rem;
+    /* padding-bottom: 61rem; */
     height: 100vh;
     text-align: center;
     color: #fff;
@@ -71,8 +71,23 @@ header .masthead {
 .cardMinWidth {
     min-width: 180px;
 }
+@media screen and (max-width: 600px) {
+    table > tr,
+    th,
+    td {
+        font-size: 0.7rem !important;
+    }
+
+    .pagination-sm .page-link {
+        font-size: 0.7rem !important;
+    }
+}
 table > tr,
 th,
 td {
-    font-size: 0.87rem !important;
+    font-size: 0.96rem;
+}
+
+.pagination-sm .page-link {
+    font-size: 0.86rem;
 }

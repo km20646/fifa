@@ -38,21 +38,26 @@ function findId(el, spid) {
 function getDataAjax2() {
     return;
 }
-function playerInfo(spid) {
-    var player;
-    $.ajax({
+// function playerInfo(spid) {
+//     var player;
+//     $.ajax({
+//         type: "GET",
+//         async: false,
+//         url: `./player.json`,
+
+//         success: function (res) {
+//             player = res.find((element, index, arr) => element.id === spid);
+//             player = player.name;
+//         },
+//     });
+//     return player;
+// }
+function getPlayerName() {
+    return $.ajax({
         type: "GET",
-        async: false,
         url: `./player.json`,
-
-        success: function (res) {
-            player = res.find((element, index, arr) => element.id === spid);
-            player = player.name;
-        },
     });
-    return player;
 }
-
 function renderTable(res) {
     return new Promise(function (resolve, reject) {
         $("#transferTable").DataTable({
@@ -61,11 +66,11 @@ function renderTable(res) {
             scrollCollapse: true,
             processing: true,
             autoWidth: true,
-            // scrollX: true,
+            scrollX: true,
             scrollY: "450px",
             destroy: true,
-            order: [[0, "asc"]],
-            pagingType: "simple",
+            order: [[0, "desc"]],
+            // pagingType: "simple",
             dom: 'rt<"float-left"p>',
             data: res,
 
@@ -77,7 +82,11 @@ function renderTable(res) {
                     },
                 },
                 {
-                    data: "spid"
+                    data: "spid",
+                    // render: function (data, type, row, meta) {
+                    //     var names = playerInfo(data);
+                    //     return names;
+                    // },
                 },
                 {
                     data: "grade",
@@ -118,10 +127,19 @@ $("#testBtn").on("click", function () {
             });
         })
         .done(() => {
-            getDataAjax(`https://api.nexon.co.kr/fifaonline4/v1.0/users/${accessId}/markets?tradetype=sell`, `&limit=50`, "123").done((res) => {
-                renderTable(res).then((res) => {
-                    $("table>thead").addClass("bg-dark text-white");
-                    $("#transferTable_paginate").addClass("mt-3");
+            getDataAjax(`https://api.nexon.co.kr/fifaonline4/v1.0/users/${accessId}/markets?tradetype=sell`, `&limit=100`, "123").done((res) => {
+                var tableData = res; ///tabledata는 spid가 있는 그리드 데이터
+                getPlayerName().done((res) => {
+                    //res는 선수 id,name만 있음
+                    for (i = 0; i < tableData.length; i++) {
+                        var names = res.find((element) => element.id == tableData[i].spid);
+                        tableData[i].spid = names.name;
+                    }
+                    renderTable(tableData).then((res) => {
+                        $("table>thead").addClass("bg-dark text-white");
+                        $("#transferTable_paginate").addClass("mt-3");
+                        $(".pagination").addClass("pagination-sm");
+                    });
                 });
             });
         });

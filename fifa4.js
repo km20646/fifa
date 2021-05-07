@@ -52,6 +52,80 @@ function getDataAjax2() {
 //     });
 //     return player;
 // }
+const ranker = [
+    {
+        divisionId: 800,
+        divisionName: "슈퍼챔피언스",
+    },
+    {
+        divisionId: 900,
+        divisionName: "챔피언스",
+    },
+    {
+        divisionId: 1000,
+        divisionName: "슈퍼챌린지",
+    },
+    {
+        divisionId: 1100,
+        divisionName: "챌린지1",
+    },
+    {
+        divisionId: 1200,
+        divisionName: "챌린지2",
+    },
+    {
+        divisionId: 1300,
+        divisionName: "챌린지3",
+    },
+    {
+        divisionId: 2000,
+        divisionName: "월드클래스1",
+    },
+    {
+        divisionId: 2100,
+        divisionName: "월드클래스2",
+    },
+    {
+        divisionId: 2200,
+        divisionName: "월드클래스3",
+    },
+    {
+        divisionId: 2300,
+        divisionName: "프로1",
+    },
+    {
+        divisionId: 2400,
+        divisionName: "프로2",
+    },
+    {
+        divisionId: 2500,
+        divisionName: "프로3",
+    },
+    {
+        divisionId: 2600,
+        divisionName: "세미프로1",
+    },
+    {
+        divisionId: 2700,
+        divisionName: "세미프로2",
+    },
+    {
+        divisionId: 2800,
+        divisionName: "세미프로3",
+    },
+    {
+        divisionId: 2900,
+        divisionName: "유망주1",
+    },
+    {
+        divisionId: 3000,
+        divisionName: "유망주2",
+    },
+    {
+        divisionId: 3100,
+        divisionName: "유망주3",
+    },
+];
 function getPlayerName() {
     return $.ajax({
         type: "GET",
@@ -114,6 +188,7 @@ $("#testBtn").on("click", function () {
             $("#myLevel").text(res.nickname);
             $("#getMyInfo").text(`LV : ${res.level}`);
             accessId = res.accessId;
+            console.log(accessId);
             $("#transferTable > tbody").append(
                 "<tr><td></td><td colspan='2'><i class='fa fa-spinner fa-spin fa-3x fa-fw'></i><span class='sr-only'>Loading...</span><td></tr>"
             );
@@ -121,7 +196,8 @@ $("#testBtn").on("click", function () {
         .done(() => {
             getDataAjax("https://api.nexon.co.kr/fifaonline4/v1.0/users/", `${accessId}/maxdivision`, "123").done((res) => {
                 let normalMatch = res[0];
-                $("#getMyteer").text(`${normalMatch.division} /${normalMatch.achievementDate.substr(0, 10)}`);
+                let teer = ranker.find((element) => element.divisionId == normalMatch.division);
+                $("#getMyteer").text(`${teer.divisionName} /${normalMatch.achievementDate.substr(0, 10)}(달성일)`);
                 console.log(typeof normalMatch.achievementDate);
                 $("#getMyteerDate").text();
             });
